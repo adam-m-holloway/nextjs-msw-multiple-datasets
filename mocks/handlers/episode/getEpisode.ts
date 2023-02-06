@@ -5,6 +5,7 @@ interface Variables {
   id: number;
 }
 
+// Response data shape
 interface Episode {
   id: string
   name: string
@@ -17,7 +18,7 @@ export const getEpisodeHandler = graphql.query<Episode, Variables>('episode', as
   const { id } = req.variables; // grab episode ID
 
   // based on episode ID, import dataset for a particular set of data
-  const dataSet = await import(`../data/episode-${id}.mock.json`);
+  const dataSet = await import(`./data/episode-${id}.mock.json`);
 
   // if no data
   if (isEmptyObject(dataSet)) {
@@ -33,6 +34,7 @@ export const getEpisodeHandler = graphql.query<Episode, Variables>('episode', as
 
   // return data
   return res(
+    // ctx.delay(1000), // delay data by 1 second
     ctx.data(dataSet)
   )
 });
