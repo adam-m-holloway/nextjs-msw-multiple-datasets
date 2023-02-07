@@ -7,7 +7,7 @@ interface Variables {
 
 // Response data shape
 interface Episode {
-  id: string
+  id: number
   name: string
   episode: string
   air_date: string

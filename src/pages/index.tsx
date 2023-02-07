@@ -3,9 +3,9 @@ import Link from 'next/link';
 export const Home = () => (
   <main>
     <p>Index page</p>
-    <Link href="/episode">Episode page</Link>
+    <Link href="/character-client">Character client-side page</Link>
     <br />
-    <Link href="/character">Character page</Link>
+    <Link href="/character-server">Character server-side page</Link>
   </main>
 );
   
