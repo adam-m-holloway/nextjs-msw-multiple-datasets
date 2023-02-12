@@ -1,4 +1,4 @@
-export const initMSW = (async () => {
+export const initMSW = async() => {
   if (typeof window === 'undefined') {
     const { server } = await import('./server')
     server.listen()
@@ -6,7 +6,7 @@ export const initMSW = (async () => {
     const { worker } = await import('./browser')
     worker.start()
   }
-})();
+};
 
 
 

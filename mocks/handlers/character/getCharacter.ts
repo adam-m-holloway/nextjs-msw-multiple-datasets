@@ -6,19 +6,18 @@ interface Variables {
 }
 
 // Response data shape
-interface Episode {
-  id: number
+interface Character {
   name: string
-  episode: string
-  air_date: string
+  image: string
 }
 
-// Intercept `episode` GraphQL query
-export const getEpisodeHandler = graphql.query<Episode, Variables>('episode', async (req, res, ctx) => {
-  const { id } = req.variables; // grab episode ID
+// Intercept `getCharacter` GraphQL query
+export default graphql.query<Character, Variables>('getCharacter', async (req, res, ctx) => {
 
-  // based on episode ID, import dataset for a particular set of data
-  const dataSet = await import(`./data/episode-${id}.mock.json`);
+  const { id } = req.variables; // grab character ID from query variable
+
+  // based on character ID, import dataset for a particular set of data
+  const dataSet = await import(`./data/character-${id}.mock.json`);
 
   // if no data
   if (isEmptyObject(dataSet)) {

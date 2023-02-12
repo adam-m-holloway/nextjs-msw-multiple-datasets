@@ -1,6 +1,6 @@
-import { getEpisodeHandler } from './episode';
+import getCharacterHandler from './character/getCharacter';
 
 // export all handlers
 export const handlers = [
-  getEpisodeHandler
+  getCharacterHandler
 ];

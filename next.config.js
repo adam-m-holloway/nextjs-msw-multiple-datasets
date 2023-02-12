@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['rickandmortyapi.com'],
+    domains: ['rickandmortyapi.com', 'via.placeholder.com'],
   },
 };
 

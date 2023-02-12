@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_CHARACTER } from '../graphql/queries';
 import Image from 'next/image'
@@ -11,25 +11,30 @@ export const CharacterClient = () => {
     },
   });
 
-  if (loading) return <div> loading...</div>;
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    setCharacterId(e.target.charId.value);
+  }
+
+  if (error) return <div>Error: {error.message}</div>;
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div>
-      You are
+      <form onSubmit={handleSubmit} style={{ border: '2px solid black', padding: 20 }}>
+        <label htmlFor="charId">Character ID</label>
+        <input style={{ marginLeft: 10 }} type="text" name="charId" id="charId" />
+        <input type="submit" value="Submit" />
+      </form>
+
+
       {data.character && (
         <>
           <h2>{data.character.name}</h2>
           <Image src={data.character.image} alt={data.character.name} width="300" height="400" />
         </>
       )}
-      <button
-        onClick={() => {
-          setCharacterId(3);
-        }}
-      >
-        {" "}
-        try again
-      </button>
+
     </div>
   );
 }
