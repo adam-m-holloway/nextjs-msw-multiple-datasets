@@ -6,6 +6,10 @@ const nextConfig = {
   images: {
     domains: ['rickandmortyapi.com', 'via.placeholder.com'],
   },
+  webpack: (config) => {
+    config.experiments.topLevelAwait = true;
+    return config;
+  },
 };
 
 module.exports = nextConfig;

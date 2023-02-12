@@ -25,10 +25,16 @@ if (API_MOCKED) {
   import('../../mocks');
 }
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <ApolloProvider client={client}>
-      <Component {...pageProps} />
-    </ApolloProvider>
-  )
-}
+const appRoot = ({ Component, pageProps }: AppProps) => (
+  <ApolloProvider client={client}>
+    <Component {...pageProps} />
+  </ApolloProvider>
+);
+
+
+
+const App = API_MOCKED
+  ? import('../../mocks').then(({ initMSW }) => initMSW().then(() => appRoot))
+  : appRoot;
+
+export default await App;

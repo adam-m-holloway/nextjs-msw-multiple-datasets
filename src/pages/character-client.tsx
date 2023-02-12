@@ -4,7 +4,7 @@ import { GET_CHARACTER } from '../graphql/queries';
 import Image from 'next/image'
 
 export const CharacterClient = () => {
-  const [characterId, setCharacterId] = useState(2);
+  const [characterId, setCharacterId] = useState(1);
   const { loading, error, data } = useQuery(GET_CHARACTER, {
     variables: {
       id: characterId,
@@ -30,7 +30,8 @@ export const CharacterClient = () => {
 
       {data.character && (
         <>
-          <h2>{data.character.name}</h2>
+          <h2>Name: {data.character.name}</h2>
+          <p>Character ID: {characterId}</p>
           <Image src={data.character.image} alt={data.character.name} width="300" height="400" />
         </>
       )}
