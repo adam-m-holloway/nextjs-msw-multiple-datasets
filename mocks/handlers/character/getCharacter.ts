@@ -17,6 +17,7 @@ export default graphql.query<Character, Variables>('getCharacter', async (req, r
   const { id } = req.variables; // grab character ID from query variable
 
   // based on character ID, import dataset for a particular set of data
+  // TODO: need to check if file exists, otherwise causes error using the below
   const dataSet = await import(`./data/character-${id}.mock.json`);
 
   // if no data
